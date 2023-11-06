@@ -10,7 +10,7 @@ class Homepage extends StatefulWidget {
 
 String? dropdownvalue = "Kochi";
 var city = ["Kochi", "Trivandrum", "Kollam", "Allepy", "Bangalore"];
-
+int indexnum=0;
 class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
@@ -48,6 +48,7 @@ class _HomepageState extends State<Homepage> {
 
       body: ListView(
         children: [
+          
           SizedBox(height: 10),
           Row(
             children: [
