@@ -25,6 +25,27 @@ class _HomepageState extends State<Homepage> {
         )),
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
       ),
+      bottomNavigationBar: BottomNavigationBar(items:[
+        BottomNavigationBarItem(icon: Icon(Icons.home,color: Colors.deepOrangeAccent,),
+        label: "Home",
+        ),
+         BottomNavigationBarItem(icon: Icon(Icons.redeem,color: Colors.deepOrangeAccent,),
+        label: "Home",
+        ),
+         BottomNavigationBarItem(icon: Icon(Icons.favorite_outline,color: Colors.deepOrangeAccent,),
+        label: "Home",
+        ),
+         BottomNavigationBarItem(icon: Icon(Icons.calendar_today,color: Colors.deepOrangeAccent,),
+        label: "Home",
+       ),
+         BottomNavigationBarItem(icon: Icon(Icons.person,color: Colors.deepOrangeAccent,),
+        label: "Home",
+        
+        )
+      ]),
+
+
+
       body: ListView(
         children: [
           SizedBox(height: 10),

@@ -195,7 +195,7 @@ SizedBox(height: 17,),
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: Text("Timings",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
-          ),
+          ),SizedBox(height: 5,),
           Padding(
             padding: const EdgeInsets.only(left: 10,),
             child: Row(
@@ -208,7 +208,63 @@ SizedBox(height: 17,),
           ),
           SizedBox(height: 7,),
           Divider(thickness: 3,),
-        Text("Average Cost",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),)
+        Text("Average Cost",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+        SizedBox(height: 7,),
+      Row(
+        children: [
+       Text("Cost for two -",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14)),
+       Text("899",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14))
+        ],
+      ),
+      Divider(
+        thickness: 3,
+      ),
+      Text("Find us",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),),
+      SizedBox(height: 15,),
+      Padding(
+        padding: const EdgeInsets.only(left: 5,right: 5),
+        child: Material(elevation: 10,
+          child: Container(
+            height: 200,width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              image: DecorationImage(image: AssetImage("assets/images/map.jpeg"),fit: BoxFit.fill)
+            ),
+          ),
+        ),
+      ),
+      SizedBox(height: 10,),
+
+      Text("Address",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
+      SizedBox(height: 7,),
+      Text("Pallath Square,Near Akshay Granites,Vhakkaraparambu,"),
+      Text("Vytila,NH Bypass Road,Ernakulam",),
+      SizedBox(height: 7,),
+      Divider(thickness: 3,),
+        
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Review (18)",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
+            InkWell(
+              onTap: () {
+                
+              },
+              child: Text("Write Review",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17,color: Colors.deepOrange),))
+          ],
+        ),
+        SizedBox(height: 7,),
+        Text("Vinay Mohan",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14)),
+        SizedBox(height: 5,),
+        Text("I recently purchased a product and I couldn’t be happier with my online shopping experience. Their website was user-friendly, making it easy to find the perfect item. The checkout process was smooth, and I received my order promptly. It arrived in excellent condition, exactly as described on their website. I’m thrilled with the quality and will definitely shop at [Store Name] again in the future. Highly recommended!",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14)),
+        SizedBox(height: 7,),
+        Text("Read all reviews",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17,color: Colors.deepOrangeAccent),),
+        SizedBox(height: 7,),
+        Divider(thickness: 3,),
+        Text("More info",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
+        SizedBox(height: 7,),
+        Text("Car parking ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+      SizedBox(height: 5,),
+        Text("Available",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 15))
 
         ],
       ),

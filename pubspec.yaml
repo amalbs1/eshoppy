@@ -71,6 +71,7 @@ flutter:
     - assets/images/giftcard.png
     - assets/images/shop.png
     - assets/images/speakers.jpeg
+    - assets/images/map.jpeg
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
