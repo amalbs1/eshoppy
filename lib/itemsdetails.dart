@@ -1,3 +1,4 @@
+import 'package:eshoppieamal/shopdeals.dart';
 import 'package:flutter/material.dart';
 
 class Detailspage extends StatefulWidget {
@@ -84,7 +85,9 @@ SizedBox(height: 17,),
                 ],
               ),
               SizedBox(width: 50,),
-              ElevatedButton(onPressed: (){},
+              ElevatedButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Dealspage(),));
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.deepOrangeAccent
               ), child: Text("VIEW DEALS",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15)))

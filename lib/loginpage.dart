@@ -1,4 +1,4 @@
-import 'package:eshoppieamal/home.dart';
+import 'package:eshoppieamal/btmnav.dart';
 import 'package:eshoppieamal/registrationpag.dart';
 import 'package:flutter/material.dart';
 
@@ -139,7 +139,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 110,right: 110),
                     child: InkWell(onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Homepage(),));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => NavigatnPage(),));
                     },
                       child: Container(
                         height: 30,
