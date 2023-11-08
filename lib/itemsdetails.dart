@@ -12,27 +12,36 @@ class _DetailspageState extends State<Detailspage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, icon: Icon(Icons.arrow_back,color: Colors.black,)),
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.share,color: Colors.black,))
+        ],
+      ),
       body: ListView(
         children: [
-          Material(elevation: 15,
-            child: Container(
-              height: 50,width: double.infinity,
-              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: IconButton(onPressed: (){
-                      Navigator.pop(context);
-                    }, icon: Icon(Icons.arrow_back)),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 35),
-                    child: IconButton(onPressed: (){}, icon: Icon(Icons.share)),
-                  )
-                ],
-              ),
-            ),
-          ),
+          // Material(elevation: 15,
+          //   child: Container(
+          //     height: 50,width: double.infinity,
+          //     child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: [
+          //         Padding(
+          //           padding: const EdgeInsets.only(left: 30),
+          //           child: IconButton(onPressed: (){
+          //             Navigator.pop(context);
+          //           }, icon: Icon(Icons.arrow_back)),
+          //         ),
+          //         Padding(
+          //           padding: const EdgeInsets.only(right: 35),
+          //           child: IconButton(onPressed: (){}, icon: Icon(Icons.share)),
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // ),
 SizedBox(height: 17,),
           Padding(
             padding: const EdgeInsets.only(left: 50,right: 50),
