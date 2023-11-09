@@ -1,3 +1,4 @@
+import 'package:eshoppieamal/review.dart';
 import 'package:eshoppieamal/shopdeals.dart';
 import 'package:flutter/material.dart';
 
@@ -259,7 +260,7 @@ SizedBox(height: 17,),
             Text("Review (18)",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
             InkWell(
               onTap: () {
-                
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Reviewpage(),));
               },
               child: Text("Write Review",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17,color: Colors.deepOrange),))
           ],
