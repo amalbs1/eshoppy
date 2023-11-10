@@ -122,6 +122,7 @@ class _ProfilepageState extends State<Profilepage> {
     MotionToast(
       animationType: AnimationType.fromBottom,
       title: Text("Updated"),
-      description: Text("Successfully"), primaryColor: Colors.deepOrangeAccent).show(context);
+      description: Text("Successfully"),
+       primaryColor: Colors.deepOrangeAccent).show(context);
   }
 }

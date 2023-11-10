@@ -1,6 +1,12 @@
+import 'dart:async';
+
+import 'package:dio/dio.dart';
+import 'package:eshoppieamal/api.dart';
 import 'package:eshoppieamal/btmnav.dart';
 import 'package:eshoppieamal/registrationpag.dart';
 import 'package:flutter/material.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});
@@ -8,7 +14,8 @@ class Loginscreen extends StatefulWidget {
   @override
   State<Loginscreen> createState() => _LoginscreenState();
 }
-
+final usernmecntr=TextEditingController();
+final paswdcntr=TextEditingController();
 class _LoginscreenState extends State<Loginscreen> {
   @override
   Widget build(BuildContext context) {
@@ -97,6 +104,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20),
                     child: TextField(
+                      controller: usernmecntr,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email,color: Colors.deepOrangeAccent,),
                         hintText: 'Email',
@@ -114,6 +122,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20),
                     child: TextField(
+                      controller: paswdcntr,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.password,color: Colors.deepOrangeAccent,),
                         hintText: 'Password',
@@ -139,7 +148,9 @@ class _LoginscreenState extends State<Loginscreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 110,right: 110),
                     child: InkWell(onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => NavigatnPage(),));
+                    
+                     loginuser();
+                    
                     },
                       child: Container(
                         height: 30,
@@ -164,7 +175,8 @@ class _LoginscreenState extends State<Loginscreen> {
                       ),
                       SizedBox(width: 10,),
                       OutlinedButton(onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Registerscreen(),));
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => Registerscreen(),));
+                        
                       }, 
                       style: OutlinedButton.styleFrom(
                         side: BorderSide(
@@ -181,5 +193,58 @@ class _LoginscreenState extends State<Loginscreen> {
         ],
       ),
     );
+  }
+
+  void loginuser()async{
+   final usernme=usernmecntr.text;
+   final pswd=paswdcntr.text;
+  if(usernme.isEmpty){
+   showErrormessage("Please enter email");
+  }else if(pswd.isEmpty){
+  showErrormessage("Please enter password");
+  } 
+  else{
+    final formdata = FormData.fromMap({
+      "username":usernme,
+      "password":pswd
+    });
+    final result = await Apiclass().loginUserapi(formdata);
+    if(result != null){
+   if(result.status==true){
+     showSuccessmessage(result.message!);
+    
+     User();
+   }else{
+    showErrormessage(result.message!);
+   }
+    }
+  }
+  }
+
+  void showErrormessage(String message){
+   MotionToast.error(
+    title: Text("Error",style: TextStyle(fontWeight: FontWeight.bold),),
+    description: Text(message),
+    position: MotionToastPosition.top,
+    width: 300,
+    height: 80,
+    dismissable: true,).show(context);
+  }
+
+  void showSuccessmessage(String message){
+   MotionToast.success(
+    title: Text("Success",style: TextStyle(fontWeight: FontWeight.bold),),
+    description: Text(message),
+    position: MotionToastPosition.top,
+    width: 300,
+    height: 80,
+    dismissable: true,).show(context);
+  }
+   Future <void> User() async{
+    await Future.delayed(Duration(seconds: 2),(){
+       Navigator.push(context,
+            MaterialPageRoute(builder: (context) =>NavigatnPage() ,));
+
+    });
   }
 }
