@@ -1,3 +1,9 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
+import 'package:eshoppieamal/api.dart';
+import 'package:eshoppieamal/productmodel.dart';
+import 'package:eshoppieamal/registermodel.dart';
 import 'package:eshoppieamal/shoppingpage.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +18,16 @@ String? dropdownvalue = "Kochi";
 var city = ["Kochi", "Trivandrum", "Kollam", "Allepy", "Bangalore"];
 
 class _HomepageState extends State<Homepage> {
+  ValueNotifier<List<Product>> productlist= ValueNotifier([]);
+  late List<Product>products=[];
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Apiclass.instance.fetchhome();
+
+  }
+ 
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(),
@@ -126,19 +141,22 @@ class _HomepageState extends State<Homepage> {
               borderRadius: BorderRadius.all(Radius.circular(20))
             ),
               height: 400,width: double.infinity,
-              child: GridView.builder(
+              child: ValueListenableBuilder(valueListenable: productlist,
+               builder: (context, List<Product> newproduct, child) {
+                 return GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 20),
-                itemCount: 4,
+                itemCount: newproduct.length,
                 itemBuilder: (context, index) {
+                  final pdct=productlist.value[index];
                   return Container(
                    
                    decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(18)),
                    
-                    image: DecorationImage(image: AssetImage("assets/images/amal1.3.jpeg"),fit: BoxFit.fill)
+                    image: DecorationImage(image: NetworkImage(pdct.image.toString()),fit: BoxFit.fill)
                    ),
                   child: Column(
                     children: [
@@ -169,7 +187,7 @@ class _HomepageState extends State<Homepage> {
                         padding: const EdgeInsets.only(top: 92),
                         child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                             Text("Microwave oven",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.white),),
+                             Text(products[index].productName!,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.white),),
                         
                           Row(
                             children: [
@@ -187,7 +205,8 @@ class _HomepageState extends State<Homepage> {
                   ),
                   );
                 },
-              ),
+              );
+               },)
             ),
           ),
           SizedBox(height: 15,),

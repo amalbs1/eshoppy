@@ -2,10 +2,13 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:eshoppieamal/loginmodel.dart';
+import 'package:eshoppieamal/productmodel.dart';
 import 'package:eshoppieamal/registermodel.dart';
 import 'package:eshoppieamal/url.dart';
+import 'package:flutter/material.dart';
 
 class Apiclass{
+  ValueNotifier<List<Product>> productlist= ValueNotifier([]);
   static Apiclass instance= Apiclass();
   factory(){
     return instance;
@@ -41,6 +44,24 @@ class Apiclass{
       print(e);
     }catch(e){
       print(e);
+    }
+  }
+   Future<void>fetchhome()async{
+    try{
+      Response response = await dio.get(url.baseUrl+url.home);
+     
+      late List<dynamic> product =  jsonDecode(response.data);
+      List<Product> homedatalist = product.map((e) => Product.fromJson(e)).toList();
+        print(product);
+      if(response.statusCode==200){
+       
+       productlist.value.clear();
+       productlist.value.addAll(homedatalist);
+        
+     
+      }
+    }catch(error){
+      print(error.toString());
     }
   }
 }
