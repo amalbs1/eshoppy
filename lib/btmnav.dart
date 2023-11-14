@@ -24,6 +24,10 @@ class _NavigatnPageState extends State<NavigatnPage> {
   Widget build(BuildContext context) {
     return  Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        unselectedIconTheme: IconThemeData(
+          color: Colors.grey
+        ),
+        selectedItemColor: Colors.deepOrangeAccent,
         onTap: (index) {
           setState(() {
              indexnum=index;
@@ -32,19 +36,19 @@ class _NavigatnPageState extends State<NavigatnPage> {
         },
         currentIndex: indexnum,
         items:[
-        BottomNavigationBarItem(icon: Icon(Icons.home,color: Colors.deepOrangeAccent,),
+        BottomNavigationBarItem(icon: Icon(Icons.home,),
         label: "Home",
         ),
-         BottomNavigationBarItem(icon: Icon(Icons.redeem,color: Colors.deepOrangeAccent,),
+         BottomNavigationBarItem(icon: Icon(Icons.redeem,),
         label: "Coupons",
         ),
-         BottomNavigationBarItem(icon: Icon(Icons.favorite_outline,color: Colors.deepOrangeAccent,),
+         BottomNavigationBarItem(icon: Icon(Icons.favorite_outline),
         label: "Favorites",
         ),
-         BottomNavigationBarItem(icon: Icon(Icons.calendar_today,color: Colors.deepOrangeAccent,),
+         BottomNavigationBarItem(icon: Icon(Icons.calendar_today,),
         label: "Calender",
        ),
-         BottomNavigationBarItem(icon: Icon(Icons.person,color: Colors.deepOrangeAccent,),
+         BottomNavigationBarItem(icon: Icon(Icons.person,),
         label: "Profile",
         
         )

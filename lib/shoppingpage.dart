@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:eshoppieamal/api/api.dart';
 import 'package:eshoppieamal/itemsdetails.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,10 @@ class Shopping extends StatefulWidget {
 class _ShoppingState extends State<Shopping> {
   bool clr = true;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -74,12 +80,15 @@ class _ShoppingState extends State<Shopping> {
                       borderRadius: BorderRadius.all(Radius.circular(15))
                     ),
                     height: 400,width: double.infinity,
-                    child: GridView.builder(gridDelegate: 
+                    child: ValueListenableBuilder(valueListenable: Apiclass.instance.shoplist,
+                     builder: (context, newshops, child) {
+                      return GridView.builder(gridDelegate: 
                     SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 20),
-                    itemCount: 4,
+                    itemCount: newshops.length,
                      itemBuilder: (context, index) {
+                      final shpsav=Apiclass.instance.shoplist.value[index];
                        return Material(elevation: 10,
                          child: Container(
                           decoration: BoxDecoration(
@@ -122,7 +131,7 @@ class _ShoppingState extends State<Shopping> {
                                   children: [
                                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("Grinder",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                                        Text(shpsav.shopname.toString(),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
                                         Row(
                                           children: [
                                             Icon(Icons.star,color: Colors.deepOrangeAccent,),
@@ -174,7 +183,8 @@ class _ShoppingState extends State<Shopping> {
                           ),
                          ),
                        );
-                     },),
+                     },);
+                    },)
                   ),
                 )  ,
                 SizedBox(height: 15,),
@@ -190,4 +200,11 @@ class _ShoppingState extends State<Shopping> {
       ),
     );
   }
+ void shopsproduct()async{
+  final formdata= FormData.fromMap({
+  "product_id":1
+  });
+  final  shops=await Apiclass().avialbleshops(formdata);
+  print(shops);
+ }
 }

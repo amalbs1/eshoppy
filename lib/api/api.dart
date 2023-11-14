@@ -1,14 +1,16 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:eshoppieamal/loginmodel.dart';
-import 'package:eshoppieamal/productmodel.dart';
-import 'package:eshoppieamal/registermodel.dart';
-import 'package:eshoppieamal/url.dart';
+import 'package:eshoppieamal/model/loginmodel.dart';
+import 'package:eshoppieamal/model/productmodel.dart';
+import 'package:eshoppieamal/model/registermodel.dart';
+import 'package:eshoppieamal/model/shopsmodel.dart';
+import 'package:eshoppieamal/url/url.dart';
 import 'package:flutter/material.dart';
 
 class Apiclass{
   ValueNotifier<List<Product>> productlist= ValueNotifier([]);
+  ValueNotifier<List<Shopsavailble>> shoplist=ValueNotifier([]);
   static Apiclass instance= Apiclass();
   factory(){
     return instance;
@@ -64,4 +66,18 @@ class Apiclass{
       print(error.toString());
     }
   }
+
+// ignore: body_might_complete_normally_nullable
+Future<Shopsavailble?> avialbleshops(FormData formData)async{
+  try{
+    final shops= await dio.post(url.shopsavilble,data: formData);
+    return Shopsavailble.fromJson(jsonDecode(shops.data));
+  }on DioException catch(e){
+    print(e);
+  }catch(e){
+    print(e);
+  }
+
+}
+  
 }

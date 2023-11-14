@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:eshoppieamal/api.dart';
+import 'package:eshoppieamal/api/api.dart';
 import 'package:eshoppieamal/btmnav.dart';
 import 'package:eshoppieamal/registrationpag.dart';
 import 'package:flutter/material.dart';

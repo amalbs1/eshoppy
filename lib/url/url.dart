@@ -6,4 +6,5 @@ class URL{
   String registerEnd="signup";
   String loginEnd="login";
  String home="view_all_products";
+String shopsavilble="product_available_shops";
 }
