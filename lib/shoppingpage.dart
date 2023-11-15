@@ -151,27 +151,29 @@ class _ShoppingState extends State<Shopping> {
                                     
                          
                          
-                                    Row(
+                                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                       Text("Distance"),
+
+                                        Row(
+                                          children: [
+                                           Text("Distance"),
                                         Text("-"),
                                          Text(shpsav.distance.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
-                                        
-                                        
+                                          ],
+                                        ),
+                                         Row(
+                                          children: [
+                                            Icon(Icons.star,color: Colors.deepOrangeAccent,),
+                                            Text(shpsav.rating.toString())
+                                          ],
+                                        ),
+                                     
                                       ],
                                     ),
-                                    SizedBox(height: 5,),
-                                    Text(shpsav.address.toString(),style: TextStyle(fontSize: 12),maxLines: 5,softWrap: true,),
+                                    
+                                    Text(shpsav.address.toString(),style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),maxLines: 5,softWrap: true,),
 
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 155,top: 6),
-                                    child: Row(
-                                            children: [
-                                              Icon(Icons.star,color: Colors.deepOrangeAccent,),
-                                              Text(shpsav.rating.toString())
-                                            ],
-                                          ),
-                                  ),
+                                 
 
                                     // Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     //   children: [
