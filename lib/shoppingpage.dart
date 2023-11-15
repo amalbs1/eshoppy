@@ -1,7 +1,11 @@
+
+
 import 'package:dio/dio.dart';
 import 'package:eshoppieamal/api/api.dart';
 import 'package:eshoppieamal/itemsdetails.dart';
 import 'package:flutter/material.dart';
+
+import 'model/shopsmodel.dart';
 
 class Shopping extends StatefulWidget {
   const Shopping({super.key});
@@ -11,11 +15,15 @@ class Shopping extends StatefulWidget {
 }
 
 class _ShoppingState extends State<Shopping> {
+  ValueNotifier<List<Shopsavailble>> shoplist=ValueNotifier([]);
   bool clr = true;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    setState(() {
+      shopsproduct();
+    });
   }
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,21 +84,27 @@ class _ShoppingState extends State<Shopping> {
                 },
                   child: Container(
                     decoration: BoxDecoration(
-                      
+                    //  color: Colors.amber,
                       borderRadius: BorderRadius.all(Radius.circular(15))
                     ),
-                    height: 400,width: double.infinity,
-                    child: ValueListenableBuilder(valueListenable: Apiclass.instance.shoplist,
+                    height: 420,width: double.infinity,
+                    child: ValueListenableBuilder(valueListenable: shoplist,
                      builder: (context, newshops, child) {
                       return GridView.builder(gridDelegate: 
-                    SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
+                    const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2,
                     mainAxisSpacing: 10,
-                    crossAxisSpacing: 20),
+                    crossAxisSpacing: 20,
+                    
+                mainAxisExtent: 280,
+                    // childAspectRatio: (1 /.8),
+                    ),
                     itemCount: newshops.length,
                      itemBuilder: (context, index) {
-                      final shpsav=Apiclass.instance.shoplist.value[index];
+                      final shpsav=shoplist.value[index];
                        return Material(elevation: 10,
+                       borderRadius: BorderRadius.all(Radius.circular(15)),
                          child: Container(
+                                    
                           decoration: BoxDecoration(
                             
                             borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -101,10 +115,11 @@ class _ShoppingState extends State<Shopping> {
                             children: [
                               Container(
                                 
-                                height: 110,
+                                height: 152,
                                 decoration: BoxDecoration(
+                                  
                                   borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15)),
-                                  image: DecorationImage(image: AssetImage("assets/images/amal1.6.jpeg"),fit: BoxFit.fill)
+                                  image: DecorationImage(image: NetworkImage(shpsav.image.toString()),fit: BoxFit.fill)
                                 ),
                                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -126,55 +141,66 @@ class _ShoppingState extends State<Shopping> {
                                 ),
                               ),
                               Container(
-                                height: 84,
+                                height: 128,
                                 child: Column(
                                   children: [
-                                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(shpsav.shopname.toString(),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.star,color: Colors.deepOrangeAccent,),
-                                            Text("3/5")
-                                          ],
-                                        )
-                                      ],
+                                    Align(alignment: AlignmentDirectional.topStart,
+                                      child: Text(shpsav.shopname.toString(),style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),
+                                        overflow: TextOverflow.ellipsis,maxLines: 3,softWrap: true,),
                                     ),
+                                    
+                         
+                         
                                     Row(
                                       children: [
-                                        Text("3 km -",style: TextStyle(fontWeight: FontWeight.bold),),
-                                        Text("UB City,Bengaluru",style: TextStyle(fontSize: 12)),
+                                       Text("Distance"),
+                                        Text("-"),
+                                         Text(shpsav.distance.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
+                                        
                                         
                                       ],
                                     ),
-                                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text("Cost : ",style: TextStyle(fontWeight: FontWeight.bold),),
-                                            Text("8000",style: TextStyle(fontSize: 12))
-                                          ],
-                                        ),
-                                        Text("121,118 bought",style: TextStyle(fontWeight: FontWeight.bold),)
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text("Add to favorites",style: TextStyle(fontWeight: FontWeight.bold)),
-                                        SizedBox(width: 10,),
-                                        InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              clr=!clr;
-                                            });
-                                          },
-                                          child: Icon(Icons.favorite,
-                                          color: clr? Colors.black:Colors.red),
-                                        )
+                                    SizedBox(height: 5,),
+                                    Text(shpsav.address.toString(),style: TextStyle(fontSize: 12),maxLines: 5,softWrap: true,),
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 155,top: 6),
+                                    child: Row(
+                                            children: [
+                                              Icon(Icons.star,color: Colors.deepOrangeAccent,),
+                                              Text(shpsav.rating.toString())
+                                            ],
+                                          ),
+                                  ),
+
+                                    // Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Row(
+                                    //       children: [
+                                    //         Text("Cost : ",style: TextStyle(fontWeight: FontWeight.bold),),
+                                    //         Text("8000",style: TextStyle(fontSize: 12))
+                                    //       ],
+                                    //     ),
+                                    //     Text("121,118 bought",style: TextStyle(fontWeight: FontWeight.bold),)
+                                    //   ],
+                                    // ),
+                                    // Row(
+                                    //   children: [
+                                    //     Text("Add to favorites",style: TextStyle(fontWeight: FontWeight.bold)),
+                                    //     SizedBox(width: 10,),
+                                    //     InkWell(
+                                    //       onTap: () {
+                                    //         setState(() {
+                                    //           clr=!clr;
+                                    //         });
+                                    //       },
+                                    //       child: Icon(Icons.favorite,
+                                    //       color: clr? Colors.black:Colors.red),
+                                    //     )
                                        
                                        
-                                      ],
-                                    )
+                                    //   ],
+                                    // )
                                   ],
                                 )
                                 
@@ -205,6 +231,15 @@ class _ShoppingState extends State<Shopping> {
   "product_id":1
   });
   final  shops=await Apiclass().avialbleshops(formdata);
-  print(shops);
+  print("//////////////${shops}");
+  setState(() {
+     if(shops !=null){
+   shoplist.value.clear();
+   shoplist.value.addAll(shops);
+  }
+
+
+  });
+ 
  }
 }

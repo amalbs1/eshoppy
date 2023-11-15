@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:eshoppieamal/api.dart';
-import 'package:eshoppieamal/productmodel.dart';
-import 'package:eshoppieamal/registermodel.dart';
+import 'package:eshoppieamal/api/api.dart';
+import 'package:eshoppieamal/model/productmodel.dart';
+import 'package:eshoppieamal/model/registermodel.dart';
 import 'package:eshoppieamal/shoppingpage.dart';
 import 'package:flutter/material.dart';
 

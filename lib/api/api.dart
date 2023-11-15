@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 class Apiclass{
   ValueNotifier<List<Product>> productlist= ValueNotifier([]);
-  ValueNotifier<List<Shopsavailble>> shoplist=ValueNotifier([]);
+  
   static Apiclass instance= Apiclass();
   factory(){
     return instance;
@@ -68,10 +68,12 @@ class Apiclass{
   }
 
 // ignore: body_might_complete_normally_nullable
-Future<Shopsavailble?> avialbleshops(FormData formData)async{
+ avialbleshops(FormData formData)async{
   try{
     final shops= await dio.post(url.shopsavilble,data: formData);
-    return Shopsavailble.fromJson(jsonDecode(shops.data));
+    late List<dynamic> avashops =  jsonDecode(shops.data);
+      // List<Product> homedatalist = product.map((e) => Product.fromJson(e)).toList();
+    return avashops.map((e) => Shopsavailble.fromJson(e)).toList();
   }on DioException catch(e){
     print(e);
   }catch(e){
