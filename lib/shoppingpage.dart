@@ -79,30 +79,33 @@ class _ShoppingState extends State<Shopping> {
                         ),
                        ),
                        SizedBox(height: 18,),
-                InkWell(onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Detailspage(),));
-                },
-                  child: Container(
-                    decoration: BoxDecoration(
-                    //  color: Colors.amber,
-                      borderRadius: BorderRadius.all(Radius.circular(15))
-                    ),
-                    height: 420,width: double.infinity,
-                    child: ValueListenableBuilder(valueListenable: shoplist,
-                     builder: (context, newshops, child) {
-                      return GridView.builder(gridDelegate: 
-                    const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 20,
-                    
+                Container(
+                  decoration: BoxDecoration(
+                  //  color: Colors.amber,
+                    borderRadius: BorderRadius.all(Radius.circular(15))
+                  ),
+                  height: 420,width: double.infinity,
+                  child: ValueListenableBuilder(valueListenable: shoplist,
+                   builder: (context, newshops, child) {
+                    return GridView.builder(gridDelegate: 
+                  const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 20,
+                  
                 mainAxisExtent: 280,
-                    // childAspectRatio: (1 /.8),
-                    ),
-                    itemCount: newshops.length,
-                     itemBuilder: (context, index) {
-                      final shpsav=shoplist.value[index];
-                       return Material(elevation: 10,
-                       borderRadius: BorderRadius.all(Radius.circular(15)),
+                  // childAspectRatio: (1 /.8),
+                  ),
+                  itemCount: newshops.length,
+                  physics: NeverScrollableScrollPhysics(),
+                   itemBuilder: (context, index) {
+                    final shpsav=shoplist.value[index];
+                     return Material(elevation: 10,
+                     borderRadius: BorderRadius.all(Radius.circular(15)),
+                       child: InkWell(onTap: () {
+                           Navigator.push(context, MaterialPageRoute(builder: (context) => Detailspage(
+                            item1: shpsav.id,
+                           ),));
+                       },
                          child: Container(
                                     
                           decoration: BoxDecoration(
@@ -153,7 +156,7 @@ class _ShoppingState extends State<Shopping> {
                          
                                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-
+                       
                                         Row(
                                           children: [
                                            Text("Distance"),
@@ -172,9 +175,9 @@ class _ShoppingState extends State<Shopping> {
                                     ),
                                     
                                     Text(shpsav.address.toString(),style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),maxLines: 5,softWrap: true,),
-
+                       
                                  
-
+                       
                                     // Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     //   children: [
                                     //     Row(
@@ -210,10 +213,10 @@ class _ShoppingState extends State<Shopping> {
                             ],
                           ),
                          ),
-                       );
-                     },);
-                    },)
-                  ),
+                       ),
+                     );
+                   },);
+                  },)
                 )  ,
                 SizedBox(height: 15,),
                 Container(

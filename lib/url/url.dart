@@ -7,4 +7,5 @@ class URL{
   String loginEnd="login";
  String home="view_all_products";
 String shopsavilble="product_available_shops";
+String shopeview="shops/1";
 }

@@ -1,17 +1,34 @@
+import 'package:dio/dio.dart';
+import 'package:eshoppieamal/api/api.dart';
 import 'package:eshoppieamal/review.dart';
 import 'package:eshoppieamal/shopdeals.dart';
 import 'package:flutter/material.dart';
 
+
 class Detailspage extends StatefulWidget {
-  const Detailspage({super.key});
+  String? item1;
+   Detailspage({super.key,this.item1});
 
   @override
   State<Detailspage> createState() => _DetailspageState();
 }
 
 class _DetailspageState extends State<Detailspage> {
+  
+    String? sname = "";
+    String? img="";
+    String? dist="";
+    String? add="";
+    String? rat="";
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  Shopps();
+  }
+
   Widget build(BuildContext context) {
+   
     return  Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -24,50 +41,32 @@ class _DetailspageState extends State<Detailspage> {
       ),
       body: ListView(
         children: [
-          // Material(elevation: 15,
-          //   child: Container(
-          //     height: 50,width: double.infinity,
-          //     child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //       children: [
-          //         Padding(
-          //           padding: const EdgeInsets.only(left: 30),
-          //           child: IconButton(onPressed: (){
-          //             Navigator.pop(context);
-          //           }, icon: Icon(Icons.arrow_back)),
-          //         ),
-          //         Padding(
-          //           padding: const EdgeInsets.only(right: 35),
-          //           child: IconButton(onPressed: (){}, icon: Icon(Icons.share)),
-          //         )
-          //       ],
-          //     ),
-          //   ),
-          // ),
+         
 SizedBox(height: 17,),
           Padding(
             padding: const EdgeInsets.only(left: 50,right: 50),
             child: Container(
               height: 170,
-              child: Image.asset("assets/images/shop.png",fit: BoxFit.fill,),
+              child: Image.network(img.toString(),fit: BoxFit.fill,),
             ),
           ),
           SizedBox(height: 10,),
           Padding(
             padding: const EdgeInsets.only(left: 10),
-            child: Text("Oxygen Digital Hub",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+            child: Text(sname.toString(),style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10),
-            child: Text("MG Road near MP Mall,Ernakulam South",style: TextStyle(fontSize: 16),),
+            child: Text(add.toString(),style: TextStyle(fontSize: 16),),
           ),
           SizedBox(height: 10,),
           Row(
             children: [
               Icon(Icons.star),
-              Text("4.8 ratings"),
+              Text(rat.toString()),
               SizedBox(width: 25,),
               Icon(Icons.location_on),
-              Text("12.5 km away"),
+              Text(dist.toString()),
               SizedBox(width: 25,),
               Icon(Icons.favorite,color: Colors.red,),
               Text("88 favorited this")
@@ -283,4 +282,17 @@ SizedBox(height: 17,),
       ),
     );
   }
+void Shopps()async{
+   
+  final shopps= await Apiclass().fetchshopview(widget.item1);
+  print("/*/*/*/*/*/*---->${shopps[0].shopname}");
+  setState(() {
+     sname = shopps[0].shopname;
+     img = shopps[0].image;
+     dist=shopps[0].distance;
+     add=shopps[0].address;
+     rat=shopps[0].rating;
+  });
+}
+ 
 }
