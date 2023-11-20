@@ -2,7 +2,12 @@ import 'package:eshoppieamal/booking.dart';
 import 'package:flutter/material.dart';
 
 class Dealspage extends StatefulWidget {
-  const Dealspage({super.key});
+  String? item2;
+  String? item3;
+  String? item4;
+  String? item5;
+  String? item6;
+   Dealspage({super.key,this.item2,this.item3,this.item4,this.item5,this.item6});
 
   @override
   State<Dealspage> createState() => _DealspageState();
@@ -13,7 +18,7 @@ class _DealspageState extends State<Dealspage> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("Oxygen Digital Shop",style: TextStyle(color: Colors.black),)),
+        title: Center(child: Text(widget.item2.toString(),style: TextStyle(color: Colors.black),)),
         leading: IconButton(onPressed: (){
           Navigator.pop(context);
         }, icon: Icon(Icons.arrow_back,color: Colors.black,)),
@@ -28,26 +33,26 @@ class _DealspageState extends State<Dealspage> {
             padding: const EdgeInsets.only(left: 50,right: 50),
             child: Container(
               height: 170,
-              child: Image.asset("assets/images/shop.png",fit: BoxFit.fill,),
+              child: Image.network(widget.item3.toString(),fit: BoxFit.fill,),
             ),
           ),
             SizedBox(height: 10,),
           Padding(
             padding: const EdgeInsets.only(left: 10),
-            child: Text("Oxygen Digital Hub",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+            child: Text(widget.item2.toString(),style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10),
-            child: Text("MG Road near MP Mall,Ernakulam South",style: TextStyle(fontSize: 16),),
+            child: Text(widget.item4.toString(),style: TextStyle(fontSize: 16),),
           ),
           SizedBox(height: 10,),
           Row(
             children: [
               Icon(Icons.star),
-              Text("4.8 ratings"),
+              Text(widget.item6.toString()),
               SizedBox(width: 25,),
               Icon(Icons.location_on),
-              Text("12.5 km away"),
+              Text(widget.item5.toString()),
               SizedBox(width: 25,),
               Icon(Icons.favorite,color: Colors.red,),
               Text("88 favorited this")

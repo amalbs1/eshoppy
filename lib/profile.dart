@@ -1,4 +1,7 @@
+import 'package:dio/dio.dart';
+import 'package:eshoppieamal/api/api.dart';
 import 'package:eshoppieamal/changepass.dart';
+import 'package:eshoppieamal/registrationpag.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
@@ -11,6 +14,22 @@ class Profilepage extends StatefulWidget {
 }
 
 class _ProfilepageState extends State<Profilepage> {
+  String? nme="";
+  String? num="";
+  String? gmail="";
+ final fnmecntr = TextEditingController();
+ final lstnmecntr = TextEditingController();
+ final emilcntr = TextEditingController();
+ final phnenmcntr = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      Viewprofile();
+    });
+    
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -27,9 +46,9 @@ class _ProfilepageState extends State<Profilepage> {
               child: Image.asset("assets/images/profile.png"),
             ),
             SizedBox(height: 10,),
-            Center(child: Text("Sheron James",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),)),
-             Center(child: Text("9400974713",style: TextStyle(fontWeight: FontWeight.w300,fontSize: 17),)),
-              Center(child: Text("sheronjames@gmail.com",style: TextStyle(fontWeight: FontWeight.w300,fontSize: 14),)),
+            Center(child: Text(nme.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),)),
+             Center(child: Text(num.toString(),style: TextStyle(fontWeight: FontWeight.w300,fontSize: 17),)),
+              Center(child: Text(gmail.toString(),style: TextStyle(fontWeight: FontWeight.w300,fontSize: 14),)),
               SizedBox(height: 10,),
               Center(
                 child: ElevatedButton(onPressed: (){
@@ -48,9 +67,10 @@ class _ProfilepageState extends State<Profilepage> {
                             Padding(
                               padding: const EdgeInsets.only(left: 20,right: 20),
                               child: TextField(
+                                controller: fnmecntr,
                                 decoration: InputDecoration(
                                    border: OutlineInputBorder(),
-                                 label: Text("Sheron")
+                                 hintText: "First name"
                                 ),
                               ),
                             ),
@@ -58,9 +78,10 @@ class _ProfilepageState extends State<Profilepage> {
                             Padding(
                               padding: const EdgeInsets.only(left: 20,right: 20),
                               child: TextField(
+                                controller: lstnmecntr,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
-                                 label: Text("James")
+                                 hintText: "Last name"
                                 ),
                               ),
                             ),
@@ -68,21 +89,56 @@ class _ProfilepageState extends State<Profilepage> {
                             Padding(
                               padding: const EdgeInsets.only(left: 20,right: 20),
                               child: TextField(
+                                controller: emilcntr,
                                 decoration: InputDecoration(
                                    border: OutlineInputBorder(),
-                                 label: Text("sheronjames@gmail.com")
+                                 hintText: "email"
                                 ),
                               ),
                             ),SizedBox(height: 10,),
                             Padding(
                               padding: const EdgeInsets.only(left: 20,right: 20),
                               child: TextField(
+                                controller: phnenmcntr,
                                 decoration: InputDecoration(
                                    border: OutlineInputBorder(),
-                                 label: Text("+91 9400974713")
+                                 hintText: "Phone number"
                                 ),
                               ),
                             ),
+                             Row(
+  children: [
+    
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text("Gender :",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+    ),
+
+    Radio(value: "male", 
+    fillColor: MaterialStateColor.resolveWith((states) => Colors.deepOrangeAccent),
+    groupValue: gender, onChanged: (newvalue){
+      setState(() {
+        gender=newvalue.toString();
+      });
+    }),Text("Male"),
+
+     Radio(value: "female", 
+     fillColor: MaterialStateColor.resolveWith((states) => Colors.deepOrangeAccent),
+    groupValue: gender, onChanged: (newvalue){
+      setState(() {
+        gender=newvalue.toString();
+      });
+    }),Text("Female"),
+
+     Radio(value: "others", 
+     fillColor: MaterialStateColor.resolveWith((states) => Colors.deepOrangeAccent),
+    groupValue: gender, onChanged: (newvalue){
+      setState(() {
+        gender=newvalue.toString();
+      });
+    }),Text("Others")
+  ],
+ ),
                             SizedBox(height: 7,),
                             SizedBox(width: 370,
                               child: ElevatedButton(onPressed: (){
@@ -124,5 +180,20 @@ class _ProfilepageState extends State<Profilepage> {
       title: Text("Updated"),
       description: Text("Successfully"),
        primaryColor: Colors.deepOrangeAccent).show(context);
+  }
+  void Viewprofile()async{
+    final formdata= FormData.fromMap({
+      "id":"2467"
+    });
+    final result= await Apiclass().profilUser(formdata);
+    print("/*/*/*/*/------>${result![0]}");
+    if(result !=null){
+      setState(() {
+         nme=result[0].fname!;
+     num=result[0].mobile!;
+     gmail=result[0].email!;
+      });
+    
+    }
   }
 }

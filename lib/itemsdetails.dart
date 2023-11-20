@@ -95,7 +95,13 @@ SizedBox(height: 17,),
               ),
               SizedBox(width: 50,),
               ElevatedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Dealspage(),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Dealspage(
+                  item2: sname.toString(),
+                  item3: img.toString(),
+                  item4: add.toString(),
+                  item5: dist.toString(),
+                  item6: rat.toString(),
+                ),));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.deepOrangeAccent

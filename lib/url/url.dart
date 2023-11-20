@@ -8,4 +8,5 @@ class URL{
  String home="view_all_products";
 String shopsavilble="product_available_shops";
 String shopeview="shops/1";
+String prof="view_profile";
 }

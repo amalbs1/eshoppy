@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:eshoppieamal/model/loginmodel.dart';
 import 'package:eshoppieamal/model/productmodel.dart';
+import 'package:eshoppieamal/model/profilemodel.dart';
 import 'package:eshoppieamal/model/registermodel.dart';
 import 'package:eshoppieamal/model/shopsmodel.dart';
 import 'package:eshoppieamal/url/url.dart';
@@ -93,4 +94,23 @@ class Apiclass {
       print(error.toString());
     }
   }
+ profilUser(FormData formData)async{
+  try{
+ final result=await dio.post(url.baseUrl+url.prof,data: formData);
+
+final List<dynamic> viewproflist=jsonDecode(result.data);
+      
+      print('********345$viewproflist');
+    
+    
+    return viewproflist.map((json) =>
+       Userprofile.fromJson(json)).toList();
+
+
+   
+  
+  }on DioException catch(e){
+    print(e);
+  }
+ }
 }

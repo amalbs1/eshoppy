@@ -121,7 +121,7 @@ class _HomepageState extends State<Homepage> {
               InkWell(
                   onTap: () {},
                   child: Text(
-                    "VIEW ALL (72)",
+                    "VIEW ALL",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.deepOrangeAccent),
