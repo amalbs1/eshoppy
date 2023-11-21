@@ -1,10 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:eshoppieamal/api/api.dart';
 import 'package:eshoppieamal/changepass.dart';
+
 import 'package:eshoppieamal/registrationpag.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'registrationpag.dart';
 
 class Profilepage extends StatefulWidget {
   const Profilepage({super.key});
@@ -22,18 +26,21 @@ class _ProfilepageState extends State<Profilepage> {
  final emilcntr = TextEditingController();
  final phnenmcntr = TextEditingController();
 final passcntr = TextEditingController();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     setState(() {
       Viewprofile();
-     
+    //   getvalue();
+    //  print("getval*********$getval");
     });
     
   }
   @override
   Widget build(BuildContext context) {
+    
     return  Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -189,6 +196,7 @@ final passcntr = TextEditingController();
   }
  
   void Viewprofile()async{
+    
     final formdata= FormData.fromMap({
       "id":"2467"
     });

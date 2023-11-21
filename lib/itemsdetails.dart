@@ -262,7 +262,7 @@ SizedBox(height: 17,),
         
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Review (18)",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
+            Text("Reviews",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
             InkWell(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Reviewpage(),));

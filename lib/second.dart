@@ -1,5 +1,5 @@
 import 'package:eshoppieamal/loginregister/loginpage.dart';
-import 'package:eshoppieamal/loginregister/registrationpag.dart';
+import 'package:eshoppieamal/registrationpag.dart';
 import 'package:flutter/material.dart';
 
 class Secondpage extends StatefulWidget {

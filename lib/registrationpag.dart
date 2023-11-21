@@ -26,6 +26,16 @@ class _RegisterscreenState extends State<Registerscreen> {
       backgroundColor: Colors.deepOrangeAccent,
       body: ListView(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: InkWell(
+                onTap: (){
+                  Navigator.pop(context);
+                },
+                child: Icon(Icons.arrow_back))),
+          ),
           SizedBox(height: 50,),
           Padding(
             padding: const EdgeInsets.only(left: 25,right: 25),
@@ -58,9 +68,9 @@ class _RegisterscreenState extends State<Registerscreen> {
             ),
            
             ),
-          ),
-  SizedBox(height: 15,),
-   Padding(
+           ),
+            SizedBox(height: 15,),
+            Padding(
             padding: const EdgeInsets.only(left: 20,right: 20),
             child: TextField(
               controller: lnamecntr,
@@ -71,9 +81,9 @@ class _RegisterscreenState extends State<Registerscreen> {
                 hintText: 'Last name',
               ),
             ),
-          ),
-    SizedBox(height: 15,),
-        Padding(
+           ),
+           SizedBox(height: 15,),
+           Padding(
             padding: const EdgeInsets.only(left: 20,right: 20),
             child: TextField(
               controller: emailcntr,
@@ -84,9 +94,9 @@ class _RegisterscreenState extends State<Registerscreen> {
                 hintText: 'Email',
               ),
             ),
-          ),
- SizedBox(height: 15,),
-          Padding(
+           ),
+           SizedBox(height: 15,),
+           Padding(
             padding: const EdgeInsets.only(left: 20,right: 20),
             child: TextField(
               controller: mbilcntr,
@@ -99,7 +109,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                 hintText: 'Mobile'
               ),
             ),
-          ),
+            ),
    
            Padding(
             padding: const EdgeInsets.only(left: 20,right: 20),
@@ -112,12 +122,12 @@ class _RegisterscreenState extends State<Registerscreen> {
                 hintText: 'Password'
               ),
             ),
-          ),
-          SizedBox(height: 10,),
- Row(
-  children: [
+           ),
+           SizedBox(height: 10,),
+            Row(
+             children: [
     
-    Padding(
+            Padding(
       padding: const EdgeInsets.all(8.0),
       child: Text("Gender :",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
     ),
@@ -165,7 +175,8 @@ class _RegisterscreenState extends State<Registerscreen> {
           fontSize: 15,fontWeight: FontWeight.bold),)),
        ),
      ),
-   )
+   ),
+
           
                     ],
                   ),

@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:eshoppieamal/api/api.dart';
 import 'package:eshoppieamal/btmnav.dart';
-import 'package:eshoppieamal/loginregister/registrationpag.dart';
+import 'package:eshoppieamal/registrationpag.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});
@@ -16,6 +17,7 @@ class Loginscreen extends StatefulWidget {
 }
 final usernmecntr=TextEditingController();
 final paswdcntr=TextEditingController();
+var getval="";
 class _LoginscreenState extends State<Loginscreen> {
   @override
   Widget build(BuildContext context) {
@@ -148,7 +150,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 110,right: 110),
                     child: InkWell(onTap: (){
-                    
+                  
                      loginuser();
                     
                     },
@@ -175,7 +177,8 @@ class _LoginscreenState extends State<Loginscreen> {
                       ),
                       SizedBox(width: 10,),
                       OutlinedButton(onPressed: (){
-                      Navigator.push(context,MaterialPageRoute(builder: (context) => Registerscreen(),));
+                      Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Registerscreen(),));
                         
                       }, 
                       style: OutlinedButton.styleFrom(
@@ -212,6 +215,8 @@ class _LoginscreenState extends State<Loginscreen> {
     if(result != null){
    if(result.status==true){
      showSuccessmessage(result.message!);
+     var idval=result.id;
+     passvalue(idval);
     
      User();
    }else{
@@ -247,4 +252,19 @@ class _LoginscreenState extends State<Loginscreen> {
 
     });
   }
+
+  void passvalue(id)async{
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  sharedPreferences.setString("key", id);
+  print("idddddddd$id");
+  getvalue();
+  }
+  void getvalue()async{
+     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+       getval=sharedPreferences.getString("key")!;
+    print("//////////////////$getval");
+   
+ 
+  }
+  
 }

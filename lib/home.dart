@@ -2,13 +2,17 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:eshoppieamal/api/api.dart';
+import 'package:eshoppieamal/loginregister/loginpage.dart';
 import 'package:eshoppieamal/model/productmodel.dart';
 import 'package:eshoppieamal/model/registermodel.dart';
+import 'package:eshoppieamal/profile.dart';
+import 'package:eshoppieamal/second.dart';
 import 'package:eshoppieamal/shoppingpage.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+  
+   Homepage({super.key});
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -30,11 +34,137 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        child: ListView(
-          children: [
-           
-          ],
-        ),
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage("assets/images/drwer.jpeg"),fit: BoxFit.fill)
+          ),
+          child: ListView(
+            children: [
+              SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text("Hello",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 30,fontWeight: FontWeight.bold),),
+                        SizedBox(width: 5,),
+                        Text("Abin",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 30,fontWeight: FontWeight.bold),),
+                      ],
+                    ),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.settings,color: Colors.deepOrangeAccent,))
+                  ],
+                ),
+              ),
+              SizedBox(height: 17,),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("My Profile",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+                    
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 35),
+                child: Divider(
+                  color: Colors.white,thickness: 1,
+                ),
+              ),
+               Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("My Bookings",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+              
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 35),
+                child: Divider(
+                  color: Colors.white,thickness: 1,
+                ),
+              ),
+                Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("My Favorites",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+              
+                  },
+                ),
+              ),
+               Padding(
+                padding: const EdgeInsets.only(right: 35),
+                child: Divider(
+                  color: Colors.white,thickness: 1,
+                ),
+              ),
+                Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("Refer A Friend",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+              
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 35),
+                child: Divider(
+                  color: Colors.white,thickness: 1,
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("Notifications",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+              
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 35),
+                child: Divider(
+                  color: Colors.white,thickness: 1,
+                ),
+              ),
+
+
+               Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("Rate App",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+              
+                  },
+                ),
+              ),
+                Padding(
+                padding: const EdgeInsets.only(right: 35),
+                child: Divider(
+                  color: Colors.white,thickness: 1,
+                ),
+              ),
+
+               Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("Log Out",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) =>Secondpage() ,));
+                  },
+                ),
+              ),
+
+
+            ],
+          ),
+        )
       ),
       appBar: AppBar(
         backgroundColor: Colors.deepOrangeAccent,
