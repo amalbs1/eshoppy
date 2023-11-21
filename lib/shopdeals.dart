@@ -63,7 +63,7 @@ class _DealspageState extends State<Dealspage> {
       Container(
         height: 400,width: double.infinity,
         child: ListView.builder(
-        // physics: NeverScrollableScrollPhysics(),
+         physics: NeverScrollableScrollPhysics(),
           itemCount: 2,
           itemBuilder: (context, index) {
           return Column(

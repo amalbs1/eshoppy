@@ -28,7 +28,7 @@ class _ShoppingState extends State<Shopping> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Electronics"),
+        title: Center(child: Text("Electronics")),
         backgroundColor: Colors.deepOrangeAccent,
       ),
       body: ListView(

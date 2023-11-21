@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:eshoppieamal/api/api.dart';
 import 'package:eshoppieamal/btmnav.dart';
-import 'package:eshoppieamal/registrationpag.dart';
+import 'package:eshoppieamal/loginregister/registrationpag.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';

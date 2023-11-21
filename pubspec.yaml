@@ -76,6 +76,7 @@ flutter:
     - assets/images/map.jpeg
     - assets/images/done1.1.png
     - assets/images/profile.png
+    - assets/images/drwer.jpeg
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

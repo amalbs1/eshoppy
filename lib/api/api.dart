@@ -6,6 +6,7 @@ import 'package:eshoppieamal/model/productmodel.dart';
 import 'package:eshoppieamal/model/profilemodel.dart';
 import 'package:eshoppieamal/model/registermodel.dart';
 import 'package:eshoppieamal/model/shopsmodel.dart';
+import 'package:eshoppieamal/model/updateprofile.dart';
 import 'package:eshoppieamal/url/url.dart';
 import 'package:flutter/material.dart';
 
@@ -94,23 +95,27 @@ class Apiclass {
       print(error.toString());
     }
   }
+
+
  profilUser(FormData formData)async{
   try{
  final result=await dio.post(url.baseUrl+url.prof,data: formData);
-
 final List<dynamic> viewproflist=jsonDecode(result.data);
-      
-      print('********345$viewproflist');
-    
-    
+      print('********345$viewproflist');    
     return viewproflist.map((json) =>
        Userprofile.fromJson(json)).toList();
-
-
-   
-  
   }on DioException catch(e){
     print(e);
   }
  }
+ 
+ updateUser(FormData formData)async{
+  try{
+   final result=await dio.post(url.baseUrl+url.updateprof,data: formData); 
+    return Updateprofile.fromJson(jsonDecode(result.data));
+  }on DioException catch(e){
+    print(e);
+  }
+ } 
+
 }

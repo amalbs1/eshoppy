@@ -21,12 +21,14 @@ class _ProfilepageState extends State<Profilepage> {
  final lstnmecntr = TextEditingController();
  final emilcntr = TextEditingController();
  final phnenmcntr = TextEditingController();
+final passcntr = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     setState(() {
       Viewprofile();
+     
     });
     
   }
@@ -56,7 +58,7 @@ class _ProfilepageState extends State<Profilepage> {
                    return ListView(
                      children: [
                        Container(
-                        height: 500,
+                        height: 550,
                         child: Column(
                           children: [
                             Align(
@@ -106,6 +108,17 @@ class _ProfilepageState extends State<Profilepage> {
                                 ),
                               ),
                             ),
+                            SizedBox(height: 10,),
+                             Padding(
+                              padding: const EdgeInsets.only(left: 20,right: 20),
+                              child: TextField(
+                                controller: passcntr,
+                                decoration: InputDecoration(
+                                   border: OutlineInputBorder(),
+                                 hintText: "Password"
+                                ),
+                              ),
+                            ),
                              Row(
   children: [
     
@@ -116,25 +129,25 @@ class _ProfilepageState extends State<Profilepage> {
 
     Radio(value: "male", 
     fillColor: MaterialStateColor.resolveWith((states) => Colors.deepOrangeAccent),
-    groupValue: gender, onChanged: (newvalue){
+    groupValue: gender, onChanged: (value){
       setState(() {
-        gender=newvalue.toString();
+        gender=value.toString();
       });
     }),Text("Male"),
 
      Radio(value: "female", 
      fillColor: MaterialStateColor.resolveWith((states) => Colors.deepOrangeAccent),
-    groupValue: gender, onChanged: (newvalue){
+    groupValue: gender, onChanged: (value){
       setState(() {
-        gender=newvalue.toString();
+        gender=value.toString();
       });
     }),Text("Female"),
 
      Radio(value: "others", 
      fillColor: MaterialStateColor.resolveWith((states) => Colors.deepOrangeAccent),
-    groupValue: gender, onChanged: (newvalue){
+    groupValue: gender, onChanged: (value){
       setState(() {
-        gender=newvalue.toString();
+        gender=value.toString();
       });
     }),Text("Others")
   ],
@@ -152,7 +165,7 @@ class _ProfilepageState extends State<Profilepage> {
                             SizedBox(height: 7,),
                             SizedBox(width: 370,
                               child: ElevatedButton(onPressed: (){
-                                successedit();
+                                 ProfileUpdte();
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.deepOrangeAccent
@@ -174,13 +187,7 @@ class _ProfilepageState extends State<Profilepage> {
       ),
     );
   }
-  void successedit(){
-    MotionToast(
-      animationType: AnimationType.fromBottom,
-      title: Text("Updated"),
-      description: Text("Successfully"),
-       primaryColor: Colors.deepOrangeAccent).show(context);
-  }
+ 
   void Viewprofile()async{
     final formdata= FormData.fromMap({
       "id":"2467"
@@ -196,4 +203,49 @@ class _ProfilepageState extends State<Profilepage> {
     
     }
   }
+void ProfileUpdte()async{
+  final fname= fnmecntr.text;
+  final lstnme= lstnmecntr.text;
+  final email= emailcntr.text;
+  final mble = phnenmcntr.text;
+  final paswrd = passcntr.text;
+
+
+final formdata = FormData.fromMap({
+   "id":2467,
+   "firstname":fname,
+   "lastname":lstnme,
+   "email":email,
+   "gender":gender,
+   "password":paswrd
+  });
+  final result = await Apiclass().updateUser(formdata);
+ if(result != null){
+  if(result.status=="ok"){
+    showUpdatemessage(result.message);
+  }
+ }
+
+
+  
+}
+void showErrormessage(String message){
+   MotionToast.error(
+    title: Text("Error",style: TextStyle(fontWeight: FontWeight.bold),),
+    description: Text(message),
+    position: MotionToastPosition.top,
+    width: 300,
+    height: 80,
+    dismissable: false,).show(context);
+  }
+   void showUpdatemessage(String message){
+   MotionToast.success(
+    title: Text("Success",style: TextStyle(fontWeight: FontWeight.bold),),
+    description: Text(message),
+    position: MotionToastPosition.top,
+    width: 300,
+    height: 80,
+    dismissable: false,).show(context);
+  }
+
 }
