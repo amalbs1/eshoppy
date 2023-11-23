@@ -20,7 +20,7 @@ class _DetailspageState extends State<Detailspage> {
   Completer<GoogleMapController>_controller=Completer();
 
   static final CameraPosition _kGoogle= CameraPosition(
-    target: LatLng(8.8264, 76.9177),
+    target: LatLng(10.0261,76.3125),
     zoom: 14.4746);
   
     String? sname = "";
@@ -104,9 +104,9 @@ SizedBox(height: 17,),
                   Text("+12 more deals",style: TextStyle(fontWeight: FontWeight.w400),)
                 ],
               ),
-              SizedBox(width: 38,),
+              SizedBox(width: 25,),
               Padding(
-                padding: const EdgeInsets.only(left: 50),
+                padding: const EdgeInsets.only(left: 40),
                 child: ElevatedButton(onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Dealspage(
                     item2: sname.toString(),
@@ -282,9 +282,9 @@ SizedBox(height: 17,),
               _controller.complete(controller);
             },
             markers: {
-              Marker(markerId: MarkerId('kollam'),
-              position: LatLng(8.8264, 76.9177),
-              infoWindow: InfoWindow(title: 'kadakkal'))
+              Marker(markerId: MarkerId('kochi'),
+              position: LatLng(10.0261,  76.3125),
+              infoWindow: InfoWindow(title: 'Edapally'))
             },),
           ),
         ),

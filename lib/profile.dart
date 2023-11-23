@@ -6,9 +6,7 @@ import 'package:eshoppieamal/registrationpag.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import 'registrationpag.dart';
 
 class Profilepage extends StatefulWidget {
   const Profilepage({super.key});
@@ -21,6 +19,7 @@ class _ProfilepageState extends State<Profilepage> {
   String? nme="";
   String? num="";
   String? gmail="";
+  final gndrcntr=TextEditingController() ;
  final fnmecntr = TextEditingController();
  final lstnmecntr = TextEditingController();
  final emilcntr = TextEditingController();
@@ -126,40 +125,19 @@ final passcntr = TextEditingController();
                                 ),
                               ),
                             ),
-                             Row(
-  children: [
-    
-    Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text("Gender :",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-    ),
-
-    Radio(value: "male", 
-    fillColor: MaterialStateColor.resolveWith((states) => Colors.deepOrangeAccent),
-    groupValue: gender, onChanged: (value){
-      setState(() {
-        gender=value.toString();
-      });
-    }),Text("Male"),
-
-     Radio(value: "female", 
-     fillColor: MaterialStateColor.resolveWith((states) => Colors.deepOrangeAccent),
-    groupValue: gender, onChanged: (value){
-      setState(() {
-        gender=value.toString();
-      });
-    }),Text("Female"),
-
-     Radio(value: "others", 
-     fillColor: MaterialStateColor.resolveWith((states) => Colors.deepOrangeAccent),
-    groupValue: gender, onChanged: (value){
-      setState(() {
-        gender=value.toString();
-      });
-    }),Text("Others")
-  ],
- ),
-                            SizedBox(height: 7,),
+                             SizedBox(height: 10,),
+                             Padding(
+                              padding: const EdgeInsets.only(left: 20,right: 20),
+                              child: TextField(
+                                controller: gndrcntr,
+                                decoration: InputDecoration(
+                                   border: OutlineInputBorder(),
+                                 hintText: "Gender"
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 2,),
+                           
                             SizedBox(width: 370,
                               child: ElevatedButton(onPressed: (){
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => Chngepasspage(),));
@@ -169,7 +147,7 @@ final passcntr = TextEditingController();
                               ),
                               child: Text("Change Password")),
                             ),
-                            SizedBox(height: 7,),
+                          
                             SizedBox(width: 370,
                               child: ElevatedButton(onPressed: (){
                                  ProfileUpdte();
@@ -217,14 +195,14 @@ void ProfileUpdte()async{
   final email= emailcntr.text;
   final mble = phnenmcntr.text;
   final paswrd = passcntr.text;
-
+  final gndr= gndrcntr.text;
 
 final formdata = FormData.fromMap({
    "id":2467,
    "firstname":fname,
    "lastname":lstnme,
    "email":email,
-   "gender":gender,
+   "gender":gndr,
    "password":paswrd
   });
   final result = await Apiclass().updateUser(formdata);

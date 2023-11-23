@@ -8,6 +8,7 @@ class BookingPage extends StatefulWidget {
 }
 
 class _BookingPageState extends State<BookingPage> {
+  
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -103,7 +104,7 @@ class _BookingPageState extends State<BookingPage> {
                 ],
               ),
             ),
-          ),SizedBox(height: 340,),
+          ),SizedBox(height: 300,),
           Padding(
             padding: const EdgeInsets.only(left: 20,right: 20),
             child: Container(width: double.infinity,
