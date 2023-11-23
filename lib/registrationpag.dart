@@ -127,10 +127,7 @@ class _RegisterscreenState extends State<Registerscreen> {
             Row(
              children: [
     
-            Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text("Gender :",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-    ),
+            Text("Gender :",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
 
     Radio(value: "male", 
     fillColor: MaterialStateColor.resolveWith((states) => Colors.deepOrangeAccent),

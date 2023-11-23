@@ -1,3 +1,4 @@
+import 'package:eshoppieamal/second.dart';
 import 'package:flutter/material.dart';
 
 class CouponsPage extends StatefulWidget {
@@ -8,6 +9,7 @@ class CouponsPage extends StatefulWidget {
 }
 
 class _CouponsPageState extends State<CouponsPage> {
+   bool clr = true;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -18,7 +20,139 @@ class _CouponsPageState extends State<CouponsPage> {
        IconButton(onPressed: (){}, icon: Icon(Icons.search))
       ],
      ),
-     drawer: Drawer(),
+     drawer: Drawer(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage("assets/images/drwer.jpeg"),fit: BoxFit.fill)
+          ),
+          child: ListView(
+            children: [
+              SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text("Hello",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 30,fontWeight: FontWeight.bold),),
+                        SizedBox(width: 5,),
+                        Text("Abin",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 30,fontWeight: FontWeight.bold),),
+                      ],
+                    ),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.settings,color: Colors.deepOrangeAccent,))
+                  ],
+                ),
+              ),
+              SizedBox(height: 17,),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("My Profile",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+                    
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 35),
+                child: Divider(
+                  color: Colors.white,thickness: 1,
+                ),
+              ),
+               Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("My Bookings",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+              
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 35),
+                child: Divider(
+                  color: Colors.white,thickness: 1,
+                ),
+              ),
+                Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("My Favorites",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+              
+                  },
+                ),
+              ),
+               Padding(
+                padding: const EdgeInsets.only(right: 35),
+                child: Divider(
+                  color: Colors.white,thickness: 1,
+                ),
+              ),
+                Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("Refer A Friend",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+              
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 35),
+                child: Divider(
+                  color: Colors.white,thickness: 1,
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("Notifications",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+              
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 35),
+                child: Divider(
+                  color: Colors.white,thickness: 1,
+                ),
+              ),
+
+
+               Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("Rate App",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+              
+                  },
+                ),
+              ),
+                Padding(
+                padding: const EdgeInsets.only(right: 35),
+                child: Divider(
+                  color: Colors.white,thickness: 1,
+                ),
+              ),
+
+               Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ListTile(
+                  title: Text("Log Out",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 19),),
+                  onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) =>Secondpage() ,));
+                  },
+                ),
+              ),
+
+
+            ],
+          ),
+        )
+      ),
      body: ListView.builder(
       
        itemCount: 3,
@@ -68,11 +202,16 @@ class _CouponsPageState extends State<CouponsPage> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 130),
+                        padding: const EdgeInsets.only(right: 100),
                         child: Text("Get 50% Discount"),
                       ),
            
-                      IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outline))
+                      IconButton(onPressed: (){
+                        setState(() {
+                          clr=!clr;
+                        });
+                      }, icon: Icon(Icons.favorite,
+                      color: clr? Colors.black:Colors.red,))
                     ],
                   ),
                   Padding(

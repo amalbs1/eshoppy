@@ -253,7 +253,7 @@ void showErrormessage(String message){
     position: MotionToastPosition.top,
     width: 300,
     height: 80,
-    dismissable: false,).show(context);
+    dismissable: true,).show(context);
   }
 
 }

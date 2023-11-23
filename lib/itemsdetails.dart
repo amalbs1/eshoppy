@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:eshoppieamal/api/api.dart';
 import 'package:eshoppieamal/review.dart';
 import 'package:eshoppieamal/shopdeals.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 
 class Detailspage extends StatefulWidget {
@@ -14,6 +17,11 @@ class Detailspage extends StatefulWidget {
 }
 
 class _DetailspageState extends State<Detailspage> {
+  Completer<GoogleMapController>_controller=Completer();
+
+  static final CameraPosition _kGoogle= CameraPosition(
+    target: LatLng(8.8264, 76.9177),
+    zoom: 14.4746);
   
     String? sname = "";
     String? img="";
@@ -88,24 +96,30 @@ SizedBox(height: 17,),
                     child: Center(child: Text("UPTO 45% OFF",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.greenAccent),)),
                   ),
                   SizedBox(height: 10,),
-                  Text("Phones and Home Appliances ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text("Phones and Home Appliances ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
+                  ),
                  SizedBox(height: 8,),
-                  Text("+12 more deals",style: TextStyle(fontWeight: FontWeight.w300),)
+                  Text("+12 more deals",style: TextStyle(fontWeight: FontWeight.w400),)
                 ],
               ),
-              SizedBox(width: 50,),
-              ElevatedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Dealspage(
-                  item2: sname.toString(),
-                  item3: img.toString(),
-                  item4: add.toString(),
-                  item5: dist.toString(),
-                  item6: rat.toString(),
-                ),));
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.deepOrangeAccent
-              ), child: Text("VIEW DEALS",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15)))
+              SizedBox(width: 38,),
+              Padding(
+                padding: const EdgeInsets.only(left: 50),
+                child: ElevatedButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Dealspage(
+                    item2: sname.toString(),
+                    item3: img.toString(),
+                    item4: add.toString(),
+                    item5: dist.toString(),
+                    item6: rat.toString(),
+                  ),));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.deepOrangeAccent
+                ), child: Text("VIEW DEALS",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15))),
+              )
             ],
           ),
           Divider(thickness: 2,),
@@ -153,7 +167,7 @@ SizedBox(height: 17,),
                                 image: DecorationImage(image: AssetImage("assets/images/speakers.jpeg"))
                               ),
                             ),
-                          ),
+                          ),SizedBox(width: 10,),
                           Column(
                             children: [
                               Text("Flat 50% off"),
@@ -161,36 +175,39 @@ SizedBox(height: 17,),
                                 children: [
                                   Text("Valid on"),
                                   SizedBox(width: 2,),
-                                  Text("25/12/2023 12:30 pm",style: TextStyle(color: Colors.deepOrangeAccent),)
+                                  Text("25/12/2023 ",style: TextStyle(color: Colors.deepOrangeAccent),)
                                 ],
                               ),
                               
                             ],
                           ),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Icon(Icons.currency_rupee,size: 15,),
-                            Text("350",style: TextStyle(decoration: TextDecoration.lineThrough,fontSize: 15),),
-                            SizedBox(width: 10,),
-                            Icon(Icons.currency_rupee),
-                            Text("175",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,color: Colors.deepOrangeAccent),)
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text("Save"),
-                            Icon(Icons.currency_rupee,size: 15,),
-                            Text("350")
-                          ],
-                        ),
-                        ElevatedButton(onPressed: (){}, 
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepOrangeAccent
-                        ),
-                        child: Text("VIEW"))
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 45),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.currency_rupee,size: 15,),
+                              Text("350",style: TextStyle(decoration: TextDecoration.lineThrough,fontSize: 15),),
+                              SizedBox(width: 10,),
+                              Icon(Icons.currency_rupee),
+                              Text("175",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,color: Colors.deepOrangeAccent),)
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text("Save"),
+                              Icon(Icons.currency_rupee,size: 15,),
+                              Text("350")
+                            ],
+                          ),
+                          ElevatedButton(onPressed: (){}, 
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.deepOrangeAccent
+                          ),
+                          child: Text("VIEW"))
+                        ],
+                      ),
                     )
                         ],
                       ),
@@ -226,18 +243,27 @@ SizedBox(height: 17,),
           ),
           SizedBox(height: 7,),
           Divider(thickness: 3,),
-        Text("Average Cost",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text("Average Cost",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+        ),
         SizedBox(height: 7,),
-      Row(
-        children: [
-       Text("Cost for two -",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14)),
-       Text("899",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14))
-        ],
+      Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Row(
+          children: [
+         Text("Cost for two -",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14)),
+         Text("899",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14))
+          ],
+        ),
       ),
       Divider(
         thickness: 3,
       ),
-      Text("Find us",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),),
+      Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Text("Find us",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),),
+      ),
       SizedBox(height: 15,),
       Padding(
         padding: const EdgeInsets.only(left: 5,right: 5),
@@ -246,43 +272,88 @@ SizedBox(height: 17,),
             height: 200,width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(15)),
-              image: DecorationImage(image: AssetImage("assets/images/map.jpeg"),fit: BoxFit.fill)
+             // image: DecorationImage(image: AssetImage("assets/images/map.jpeg"),fit: BoxFit.fill)
             ),
+            child: GoogleMap(initialCameraPosition: _kGoogle,
+            mapType: MapType.normal,
+            myLocationEnabled: true,
+            compassEnabled: true,
+            onMapCreated: (GoogleMapController controller){
+              _controller.complete(controller);
+            },
+            markers: {
+              Marker(markerId: MarkerId('kollam'),
+              position: LatLng(8.8264, 76.9177),
+              infoWindow: InfoWindow(title: 'kadakkal'))
+            },),
           ),
         ),
       ),
       SizedBox(height: 10,),
 
-      Text("Address",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
+      Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Text("Address",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
+      ),
       SizedBox(height: 7,),
-      Text("Pallath Square,Near Akshay Granites,Vhakkaraparambu,"),
-      Text("Vytila,NH Bypass Road,Ernakulam",),
+      Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Text("Pallath Square,Near Akshay Granites,Vhakkaraparambu,"),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Text("Vytila,NH Bypass Road,Ernakulam",),
+      ),
       SizedBox(height: 7,),
       Divider(thickness: 3,),
         
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Reviews",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text("Reviews",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
+            ),
             InkWell(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Reviewpage(),));
               },
-              child: Text("Write Review",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17,color: Colors.deepOrange),))
+              child: Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Text("Write Review",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17,color: Colors.deepOrange),),
+              ))
           ],
         ),
         SizedBox(height: 7,),
-        Text("Vinay Mohan",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14)),
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text("Vinay Mohan",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14)),
+        ),
         SizedBox(height: 5,),
-        Text("I recently purchased a product and I couldn’t be happier with my online shopping experience. Their website was user-friendly, making it easy to find the perfect item. The checkout process was smooth, and I received my order promptly. It arrived in excellent condition, exactly as described on their website. I’m thrilled with the quality and will definitely shop at [Store Name] again in the future. Highly recommended!",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14)),
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text("I recently purchased a product and I couldn’t be happier with my online shopping experience. Their website was user-friendly, making it easy to find the perfect item. The checkout process was smooth, and I received my order promptly. It arrived in excellent condition, exactly as described on their website. I’m thrilled with the quality and will definitely shop at eShoppy again in the future. Highly recommended!",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14)),
+        ),
         SizedBox(height: 7,),
-        Text("Read all reviews",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17,color: Colors.deepOrangeAccent),),
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text("Read all reviews",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17,color: Colors.deepOrangeAccent),),
+        ),
         SizedBox(height: 7,),
         Divider(thickness: 3,),
-        Text("More info",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text("More info",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
+        ),
         SizedBox(height: 7,),
-        Text("Car parking ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text("Car parking ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+        ),
       SizedBox(height: 5,),
-        Text("Available",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 15))
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text("Available",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 15)),
+        )
 
         ],
       ),

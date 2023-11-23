@@ -194,7 +194,7 @@ class _HomepageState extends State<Homepage> {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 50, right: 50),
+                  padding: const EdgeInsets.only(left: 20, right: 20),
                   child: DropdownButtonFormField(
                       icon: Icon(Icons.keyboard_arrow_down),
                       decoration: InputDecoration(
@@ -250,51 +250,57 @@ class _HomepageState extends State<Homepage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "OFFERS FOR YOU",
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  "OFFERS FOR YOU",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
               InkWell(
                   onTap: () {},
-                  child: Text(
-                    "VIEW ALL",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.deepOrangeAccent),
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Text(
+                      "VIEW ALL",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepOrangeAccent),
+                    ),
                   ))
             ],
           ),
           SizedBox(
             height: 10,
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
+          Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              height: 400,
+              width: double.infinity,
+              child: ValueListenableBuilder(
+                valueListenable: Apiclass.instance.productlist,
+                builder: (context, List<Product> newproduct, child) {
+                  
+                  return GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 10,
+                        mainAxisExtent: 200,
+                        crossAxisSpacing: 20),
+                    itemCount: newproduct.length,
+                    itemBuilder: (context, index) {
+                      final pdct = Apiclass.instance.productlist.value[index];
+                       
+                      return InkWell(onTap: () {
+                          Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => Shopping(),
                   ));
-            },
-            child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                height: 400,
-                width: double.infinity,
-                child: ValueListenableBuilder(
-                  valueListenable: Apiclass.instance.productlist,
-                  builder: (context, List<Product> newproduct, child) {
-                    
-                    return GridView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 20),
-                      itemCount: newproduct.length,
-                      itemBuilder: (context, index) {
-                        final pdct = Apiclass.instance.productlist.value[index];
-                         
-                        return Container(
+                      },
+                        child: Container(
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(18)),
@@ -357,47 +363,53 @@ class _HomepageState extends State<Homepage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Align(alignment: FractionalOffset.bottomLeft,
-                                      child: Text(
-                                       pdct.productName!,
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                            foreground: Paint()..shader=LinearGradient(colors: [
-                                              Colors.red,
-                                            Colors.yellow,
-                                            ]).createShader(Rect.fromLTWH(0, 50, 200, 200)
-                                            )
-                                            ),
-                                      ),
-                                    ),
-                                    
-                                    Row(
-                                      children: [
-                                        Icon(Icons.currency_rupee,color: Colors.deepOrangeAccent,size: 15,),
-                                        Text(pdct.price.toString(),
-                                         style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
-                                                  foreground: Paint()..shader=LinearGradient(colors: [
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 10),
+                                        child: Text(
+                                         pdct.productName!,
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              foreground: Paint()..shader=LinearGradient(colors: [
                                                 Colors.red,
                                               Colors.yellow,
                                               ]).createShader(Rect.fromLTWH(0, 50, 200, 200)
                                               )
-                                                  ),
+                                              ),
                                         ),
-                                      ],
+                                      ),
+                                    ),
+                                    
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.currency_rupee,color: Colors.deepOrangeAccent,size: 15,),
+                                          Text(pdct.price.toString(),
+                                           style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    foreground: Paint()..shader=LinearGradient(colors: [
+                                                  Colors.red,
+                                                Colors.yellow,
+                                                ]).createShader(Rect.fromLTWH(0, 50, 200, 200)
+                                                )
+                                                    ),
+                                          ),
+                                        ],
+                                      ),
                                     )
                                   ],
                                 ),
                               ),
                             ],
                           ),
-                        );
-                      },
-                    );
-                  },
-                )),
-          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              )),
           SizedBox(
             height: 15,
           ),

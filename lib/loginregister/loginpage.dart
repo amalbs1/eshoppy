@@ -26,7 +26,7 @@ class _LoginscreenState extends State<Loginscreen> {
       backgroundColor: Colors.deepOrangeAccent,
       body: ListView(
         children: [
-            SizedBox(height: 25,),
+            SizedBox(height: 35,),
             Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Text("Welcome to e-Shoppy!",
@@ -40,7 +40,7 @@ class _LoginscreenState extends State<Loginscreen> {
                     color: Colors.white
                     ),),
                   ),
-        
+        SizedBox(height: 40,),
           Padding(
             padding: const EdgeInsets.only(left: 25,right: 25,top: 40),
             child: Container(
@@ -55,7 +55,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 50),
+                        padding: const EdgeInsets.only(left: 35),
                         child: OutlinedButton(onPressed: (){},
                          style: OutlinedButton.styleFrom(
                           side: BorderSide(
@@ -71,7 +71,7 @@ class _LoginscreenState extends State<Loginscreen> {
                         )),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 50),
+                        padding: const EdgeInsets.only(right: 35),
                         child: OutlinedButton(onPressed: (){}, 
                         style: OutlinedButton.styleFrom(
                           side: BorderSide(
